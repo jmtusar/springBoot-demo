@@ -1,9 +1,7 @@
 package com.jmtusar.springDemo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,15 +11,22 @@ import java.util.List;
 public class StudentController {
 
 
-    private StudentService studentService;
+    private StudentService service;
 
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    public StudentController(StudentService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public Student save(
+            @RequestBody Student student
+    ){
+        return service.save(student);
     }
 
     @GetMapping
     public List<Student> findAllStudents(){
-        return studentService.findAllStudents();
+        return service.findAllStudents();
     }
 
 }
