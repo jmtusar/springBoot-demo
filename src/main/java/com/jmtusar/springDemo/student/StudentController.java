@@ -1,5 +1,6 @@
 package com.jmtusar.springDemo.student;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +12,9 @@ public class StudentController {
 
     private StudentService service;
 
-    public StudentController(StudentService service) {
+    public StudentController(
+            @Qualifier("db") StudentService service
+    ) {
         this.service = service;
     }
 
